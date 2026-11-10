@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Banque Sahel Atlantique – Espace client (maquette de tournage)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <div class="logo"><i></i>Banque Sahel Atlantique</div>
+    <nav id="nav" class="hide" aria-label="Navigation principale">
+      <a href="#accueil" data-p="accueil">Accueil</a>
+      <a href="#virements" data-p="virements">Virements</a>
+      <a href="#operations" data-p="operations">Retrait et dépôt</a>
+      <a href="#compte" data-p="compte">Mon compte</a>
+      <button id="out" type="button">Déconnexion</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- CONNEXION -->
+  <section id="login">
+    <div class="card">
+      <h1>Espace client</h1>
+      <p class="sub">Connectez-vous pour accéder à vos comptes.</p>
+      <label for="u">Identifiant</label>
+      <input id="u" autocomplete="off" autocapitalize="off">
+      <label for="p">Mot de passe</label>
+      <input id="p" type="password" autocomplete="off">
+      <div class="err" id="lerr" role="alert"></div>
+      <button class="btn" id="lbtn" type="button" style="width:100%">Se connecter</button>
+    </div>
+  </section>
+
+  <!-- ACCUEIL -->
+  <section id="accueil" class="page hide">
+    <h1>Bonjour, <span data-f="prenom"></span></h1>
+    <p class="sub">Dernière connexion : <span id="lastlog"></span></p>
+    <div class="alert bad"><b>Compte bloqué</b><span data-f="motif"></span></div>
+    <div class="grid">
+      <div class="card">
+        <h2>Compte courant <span class="tag bad">Bloqué</span></h2>
+        <div class="num bal"><span data-f="solde"></span> FCFA</div>
+        <p class="sub" style="margin:0">N° <span data-f="iban"></span></p>
+      </div>
+      <div class="card">
+        <h2>En attente</h2>
+        <div class="num bal" style="font-size:1.8rem"><span id="npend"></span> virements</div>
+        <p class="sub" style="margin:0">Total : <span class="num" id="tpend"></span> FCFA</p>
+        <a class="btn ghost" style="display:inline-block;text-decoration:none" href="#virements">Voir le détail</a>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Dernières opérations</h2>
+      <div class="tbl"><table><thead><tr><th>Date</th><th>Libellé</th><th class="r">Montant (FCFA)</th></tr></thead><tbody id="lastops"></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- VIREMENTS -->
+  <section id="virements" class="page hide">
+    <h1>Historique des virements</h1>
+    <p class="sub">Ordres de virement émis depuis votre compte.</p>
+    <div class="alert warn"><b>Traitement suspendu</b>Les ordres ci-dessous restent en attente tant que le compte est bloqué.</div>
+    <div class="card">
+      <div class="tbl"><table><thead><tr><th>Date</th><th>Référence</th><th>Bénéficiaire</th><th class="r">Montant (FCFA)</th><th>Statut</th></tr></thead><tbody id="tr"></tbody></table></div>
+    </div>
+    <div class="card">
+      <h2>Nouveau virement</h2>
+      <div class="row">
+        <div><label for="vb">Bénéficiaire</label><input id="vb"></div>
+        <div><label for="vi">IBAN</label><input id="vi"></div>
+        <div><label for="vm">Montant (FCFA)</label><input id="vm" inputmode="numeric"></div>
+      </div>
+      <div class="alert bad hide" id="verr" role="alert" style="margin-top:16px;margin-bottom:0"></div>
+      <button class="btn" id="vbtn" type="button">Envoyer le virement</button>
+    </div>
+  </section>
+
+  <!-- OPERATIONS -->
+  <section id="operations" class="page hide">
+    <h1>Retrait et dépôt</h1>
+    <p class="sub">Solde : <span class="num"><span data-f="solde"></span> FCFA</span> <span class="tag bad">Bloqué</span></p>
+    <div class="grid" style="grid-template-columns:1fr 1fr">
+      <div class="card">
+        <h2>Retrait</h2>
+        <label for="rm">Montant (FCFA)</label><input id="rm" inputmode="numeric">
+        <label for="rc">Mode de retrait</label>
+        <select id="rc"><option>Agence</option><option>Distributeur</option></select>
+        <div class="alert bad hide" id="rerr" role="alert" style="margin:16px 0 0"></div>
+        <button class="btn" id="rbtn" type="button">Demander le retrait</button>
+      </div>
+      <div class="card">
+        <h2>Dépôt</h2>
+        <label for="dm">Montant (FCFA)</label><input id="dm" inputmode="numeric">
+        <label for="dc">Mode de dépôt</label>
+        <select id="dc"><option>Espèces en agence</option><option>Chèque</option></select>
+        <div class="alert bad hide" id="derr" role="alert" style="margin:16px 0 0"></div>
+        <button class="btn" id="dbtn" type="button">Déclarer le dépôt</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MON COMPTE -->
+  <section id="compte" class="page hide">
+    <h1>Mon compte</h1>
+    <p class="sub">Informations personnelles et détails du compte.</p>
+    <div class="card"><h2>Titulaire</h2><dl id="d1"></dl></div>
+    <div class="card"><h2>Compte</h2><dl id="d2"></dl></div>
+  </section>
+</main>
+
+<footer>Maquette de tournage – banque et données fictives, aucun service réel.</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
